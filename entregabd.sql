@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: localhost    Database: fseletro
 -- ------------------------------------------------------
--- Server version	5.7.31
+-- Server version	8.0.22
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `cliente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente` (
-  `id_cliente` int(11) NOT NULL AUTO_INCREMENT,
-  `id_pedidos` int(11) NOT NULL,
+  `id_cliente` int NOT NULL AUTO_INCREMENT,
+  `id_pedidos` int NOT NULL,
   PRIMARY KEY (`id_cliente`,`id_pedidos`),
   KEY `id_pedido_idx` (`id_pedidos`),
-  CONSTRAINT `id_pedidos` FOREIGN KEY (`id_pedidos`) REFERENCES `pedidos` (`id_pedidos`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `id_pedidos` FOREIGN KEY (`id_pedidos`) REFERENCES `pedidos` (`id_pedidos`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,7 +49,7 @@ DROP TABLE IF EXISTS `comentario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `comentario` (
-  `id_comentario` int(11) NOT NULL AUTO_INCREMENT,
+  `id_comentario` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) DEFAULT NULL,
   `msg` varchar(300) DEFAULT NULL,
   `data` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -75,7 +75,7 @@ DROP TABLE IF EXISTS `contato`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contato` (
-  `idcontato` int(11) NOT NULL AUTO_INCREMENT,
+  `idcontato` int NOT NULL AUTO_INCREMENT,
   `email` varchar(200) NOT NULL,
   `senha` varchar(8) NOT NULL,
   PRIMARY KEY (`idcontato`)
@@ -99,21 +99,21 @@ DROP TABLE IF EXISTS `pedidos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pedidos` (
-  `id_pedidos` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pedidos` int NOT NULL AUTO_INCREMENT,
   `nomecliente` varchar(60) NOT NULL,
   `logradouro` varchar(120) NOT NULL,
-  `telefone` int(11) NOT NULL,
+  `telefone` int NOT NULL,
   `nomeproduto` varchar(120) NOT NULL,
   `valorunitario` decimal(8,2) NOT NULL,
-  `quantidade` int(11) NOT NULL,
+  `quantidade` int NOT NULL,
   `valortotal` decimal(8,2) NOT NULL,
-  `id_cliente` int(11) DEFAULT NULL,
-  `num` int(11) DEFAULT NULL,
+  `id_cliente` int DEFAULT NULL,
+  `num` int DEFAULT NULL,
   `bairro` varchar(45) DEFAULT NULL,
   `cidade` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_pedidos`),
   KEY `id_cliente_idx` (`id_cliente`),
-  CONSTRAINT `id_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `id_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -135,7 +135,7 @@ DROP TABLE IF EXISTS `produtos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `produtos` (
-  `id_produto` int(11) NOT NULL,
+  `id_produto` int NOT NULL,
   `categoria` varchar(45) NOT NULL,
   `descricao` varchar(150) NOT NULL,
   `preco` decimal(8,2) DEFAULT NULL,
@@ -172,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-02 15:39:54
+-- Dump completed on 2021-01-18 10:25:49
